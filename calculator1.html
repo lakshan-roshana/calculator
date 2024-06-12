@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        input[type="button"] {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+        }
+        #demo {
+            font-size: 24px;
+            margin-bottom: 10px;
+            width: 250px;
+            height: 60px;
+            background-color: aqua;
+        }
+        #reset {
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+        }
+        #del {
+            width: 130px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+        }
+        .class{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <p id="demo"></p>
+        <input type="button" value=" 9 " id="n9" onclick="mynum('9')">
+        <input type="button" value=" 8 " id="n8" onclick="mynum('8')">
+        <input type="button" value=" 7 " id="n7" onclick="mynum('7')">
+        <input type="button" value=" + " id="op+" onclick="mynum('+')">
+        <br><br>
+        <input type="button" value=" 6 " id="n6" onclick="mynum('6')">
+        <input type="button" value=" 5 " id="n5" onclick="mynum('5')">
+        <input type="button" value=" 4 " id="n4" onclick="mynum('4')">
+        <input type="button" value=" - " id="op-" onclick="mynum('-')">
+        <br><br>
+        <input type="button" value=" 3 " id="n3" onclick="mynum('3')">
+        <input type="button" value=" 2 " id="n2" onclick="mynum('2')">
+        <input type="button" value=" 1 " id="n1" onclick="mynum('1')">
+        <input type="button" value=" * " id="op*" onclick="mynum('*')">
+        <br><br>
+        <input type="button" value=" 0 " id="n0" onclick="mynum('0')">
+        <input type="button" value="  . " id="n." onclick="mynum('.')">
+        <input type="button" value=" = " id="n=" onclick="printans()">
+        <input type="button" value=" / " id="op/" onclick="mynum('/')">
+        <br><br>
+        <input type="button" onclick="resetall()" value="RESET" id="reset">
+        <input type="button" onclick="del()" value="DELETE" id="del">
+    </div>
+
+    <script>
+        let expression = '';
+        function resetall() {
+            expression = '';
+            document.getElementById("demo").innerHTML = '';
+        }
+
+        function mynum(val) {
+            expression += val;
+            document.getElementById("demo").innerHTML = expression;
+        }
+
+        function del() {
+            expression = expression.slice(0, -1);
+            document.getElementById("demo").innerHTML = expression;
+        }
+
+        function printans() {
+            try {
+                let result = eval(expression);
+                document.getElementById("demo").innerHTML = expression + ' = ' + result;
+                expression = '';
+            } catch (e) {
+                document.getElementById("demo").innerHTML = 'Error';
+                expression = '';
+            }
+        }
+    </script>
+</body>
+</html>
